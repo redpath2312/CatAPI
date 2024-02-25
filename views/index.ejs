@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Cat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+</head>
+<body>
+      
+    <h1 class="pacifico-regular">Show Meow A Random Cat</h1>
+
+    <!-- Buttons for the 3 options of retrieving a Cat -->
+    <div class = "menu"> 
+        <div class = "button">
+        <form action= "/" method="GET">
+        <input type ="submit" value = "Just Image" />   
+        </form>
+        </div>
+
+        <div class = "button">
+        <form action= "/gif" method="GET">
+        <input type ="submit" value = "GIF" />   
+        </form>
+        </div>
+
+        <div class = "button">
+        <form action ="/says" method="post">
+        <label for="catTextInput">Cat With Text: </label>  
+        <input type ="text" placeholder="Text Here, Hit Enter" name="catText" formaction="/says">
+        </form>
+        </div>
+
+    </div>
+    
+    <!-- If API has managed to retrieve a Cat Image, it will display the Base64 converted image.
+    Otherwise it will display a placeholder Cat Error Image -->
+
+    <div class ="container">
+        <% if (locals.cat) { %>
+        <img src ="data:image/png;base64, <%= cat %>"/>
+        <!-- Displaying a base64 image  -->
+        <%} else {%>
+        <img height= 650px src ="images/cat500.avif" alt="cat500error"/>
+        <%};%>
+    </div>
+
+
+
+    <!--Area at bottom to show errors if there has been a failure to retrieve a cat image  -->
+    <div class="response-area">
+        <p>
+        <% if (locals.error) { console.log(error);%>
+        <%=error%>
+        <%} else {%>
+        Select an option above.<br> (Note - GIF's take a few seconds to load, and "Cat With Text" will sometimes error but just try again)
+        <%};%>
+        </p>
+    </div>
+
+</body>
+</html>
