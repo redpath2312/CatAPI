@@ -37,14 +37,19 @@
 
     </div>
     
-    <!-- If API has managed to retrieve a Cat Image, it will display the Base64 converted image.
-    Otherwise it will display a placeholder Cat Error Image -->
+    <!-- If API has managed to retrieve a Cat Image or GIF, it will pass in catURL from the _id it got from the json. 
+    If "Cat With Text" was selected then a base64 conversion will have been done and will pass that in as cat64. Is this fails it will display 
+    a placeholder Cat Error Image -->
 
     <div class ="container">
-        <% if (locals.cat) { %>
-        <img src ="data:image/png;base64, <%= cat %>"/>
+        <% if (locals.catURL) { %>
+        <!-- <img src ="data:image/png;base64"/> -->
+        <img height = 650px src ="<%= catURL %>"/>
+        <% console.log(catURL); %>
         <!-- Displaying a base64 image  -->
-        <%} else {%>
+        <%} else if (locals.cat64) {%>
+        <img height= 650px src ="data:image/png;base64 , <%= cat64 %>"/>
+        <%} else { %>
         <img height= 650px src ="images/cat500.avif" alt="cat500error"/>
         <%};%>
     </div>
