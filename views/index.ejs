@@ -45,10 +45,6 @@
         <% if (locals.catURL) { %>
         <!-- <img src ="data:image/png;base64"/> -->
         <img height = 650px src ="<%= catURL %>"/>
-        <% console.log(catURL); %>
-        <!-- Displaying a base64 image  -->
-        <%} else if (locals.cat64) {%>
-        <img height= 650px src ="data:image/png;base64 , <%= cat64 %>"/>
         <%} else { %>
         <img height= 650px src ="images/cat500.avif" alt="cat500error"/>
         <%};%>
@@ -62,7 +58,7 @@
         <% if (locals.error) { console.log(error);%>
         <%=error%>
         <%} else {%>
-        Select an option above.<br> (Note - GIF's take a few seconds to load, and "Cat With Text" will sometimes error but just try again)
+        Select an option above.<br> (Note - GIF's take a few seconds to load)
         <%};%>
         </p>
     </div>
